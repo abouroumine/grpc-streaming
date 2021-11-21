@@ -1,0 +1,19 @@
+syntax = "proto3";
+
+package grpc_stream;
+
+option go_package = "abouroumine/two_server/server;server";
+
+service TwoStream {
+  rpc countMultiDiv(stream Request) returns (stream Response) {}
+}
+
+message Request {
+  int64 first = 1;
+  int64 second = 2;
+}
+
+message Response {
+  int64 multi = 1;
+  int64 div = 2;
+}

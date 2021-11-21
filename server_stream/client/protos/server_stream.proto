@@ -1,0 +1,16 @@
+syntax = "proto3";
+
+package grpc_stream;
+
+import "google/protobuf/wrappers.proto";
+
+option go_package = "abouroumine/ss_client/client;client";
+
+service ServerStream {
+  rpc startToFinish(Request) returns (stream google.protobuf.Int64Value) {}
+}
+
+message Request {
+  int64 start = 1;
+  int64 finish = 2;
+}

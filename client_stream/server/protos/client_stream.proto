@@ -1,0 +1,16 @@
+syntax = "proto3";
+
+package grpc_stream;
+
+import "google/protobuf/wrappers.proto";
+
+option go_package = "abouroumine/cs_server/server;server";
+
+service ClientStream {
+  rpc maxAndAverage(stream google.protobuf.Int64Value) returns (TwoResponse) {}
+}
+
+message TwoResponse {
+  int64 max = 1;
+  int64 average = 2;
+}
