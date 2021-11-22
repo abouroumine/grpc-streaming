@@ -2,6 +2,7 @@ package main
 
 import (
 	pb "abouroumine/cs_client/protos"
+	"abouroumine/cs_client/utils"
 	"context"
 	"fmt"
 	"google.golang.org/grpc"
@@ -14,7 +15,7 @@ const (
 )
 
 func main() {
-	conn, err := grpc.Dial(Server, grpc.WithInsecure(), grpc.WithBlock())
+	conn, err := grpc.Dial(Server, grpc.WithInsecure(), grpc.WithUnaryInterceptor(utils.OrderUnaryClientInterceptor), grpc.WithStreamInterceptor(utils.OrderStreamClientInterceptor))
 
 	if err != nil {
 		return

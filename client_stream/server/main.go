@@ -12,7 +12,9 @@ const (
 )
 
 func main() {
-	s := grpc.NewServer()
+	s := grpc.NewServer(
+		grpc.UnaryInterceptor(utils.OrderUnaryServerInterceptor),
+		grpc.StreamInterceptor(utils.OrderStreamServerInterceptor))
 	lis, err := net.Listen("tcp", Server)
 	if err != nil {
 		return
